@@ -1,0 +1,127 @@
+/*
+ * Copyright (C) 2018 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/** [Zhiqiang] version管理 **/
+
+/**
+* Shared file between builds so that they can all use the same dependencies and
+* maven repositories.
+**/
+ext {
+    GROUP = "com.juqitech.niumowang"
+    repoType = "remote"
+
+    compileSdkVersion = 28
+    buildToolsVersion = "28.0.2"
+    minSdkVersion = 16
+    targetSdkVersion = 26
+    versionCode = 717
+    versionName = "4.23.0.1"
+
+    gradle = "3.3.1"
+
+    appcompatVersion = "26.1.0"
+    supportv4Version = "26.1.0"
+    designVersion = "26.1.0"
+    cardviewv7Version = "26.1.0"
+    palettev7Version = "26.1.0"
+    gridlayoutv7Version = "26.1.0"
+    recyclerviewv7Version = "26.1.0"
+    constraintLayout = "1.1.3"
+
+    multidexVersion = "1.0.3"
+    appupdateVersion = "1.1.3"
+    utilityVersion = "1.0.3"
+    dbhelperVersion = "20170210"
+    imagehelperVersion = "1.0.1"
+    sharehelperVersion = "1.0.8"
+    paymenthelperVersion = "20170226"
+    viewhelperVersion = "1.0.1"
+    httphelperVersion = "1.2.1"
+    udeskModelVersion = "1.1.12"
+    gatewayModelVersion = "1.0.8"
+    trackdataVersion = "1.2.0"
+    chipsLayoutVersion = "0.3.7"
+
+    supportLibVersion = "25.3.0"
+    runnerVersion = "1.0.0"
+    rulesVersion = "1.0.0"
+    espressoVersion = "3.0.0"
+
+    userModelVersion = "4.22.1.0"
+    showModelVersion = "4.22.1.0"
+    homeModelVersion = "4.22.1.0"
+    messageModelVersion = "4.22.1.0"
+    orderModelVersion = "4.22.1.0"
+    otherModelVersion = "4.22.1.0"
+    transferModelVersion = "4.22.1.0"
+    reactNative = "0.54.4"
+    nmwappModuleVersion = "4.23.0.0"
+    arouterApi = "1.4.1"
+    arouterCompiler = "1.2.2"
+    zxing = "3.3.0"
+
+    glide = "3.8.0"
+    glideOkhttp3 = "1.5.0@aar"
+    gson = "2.8.5"
+    okhttp = "3.11.0"
+    retrofit = "2.4.0"
+    lifecycle = "1.1.1"
+    rxjava2 = "2.2.6"
+    rxandroid = "2.1.1"
+    rxpermission = "0.10.2"
+}
+
+
+def addRepos(RepositoryHandler handler) {
+    //jcenter已经删掉了android.arch.core库，所以需要从 maven { url "https://maven.google.com" }中获取android.arch.core:common-1.1.0.jar
+    handler.google()
+    handler.jcenter()
+
+    handler.maven {
+        url 'https://dl.bintray.com/zouyuhan/maven'
+    }
+    handler.mavenCentral()
+    handler.maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    handler.maven {
+        url "http://mvn.gt.igexin.com/nexus/content/repositories/releases/"
+    }
+    handler.maven {
+        url "http://10.1.1.17:8081/nexus/content/groups/public/"
+    }
+    handler.maven {
+        url "http://10.1.1.17:8081/nexus/content/repositories/releases"
+    }
+    handler.maven {
+        url "http://10.1.1.17:8081/nexus/content/repositories/snapshots"
+    }
+
+    handler.maven { url "https://jitpack.io" }
+
+    handler.maven {
+        // All of React Native (JS, Android binaries) is installed from npm
+        url "$rootDir/node_modules/react-native/android"
+    }
+
+    handler.maven {
+        url "$rootDir/node_modules/react-native-fast-image/android"
+    }
+
+    handler.maven {
+        url "$rootDir/node_modules/react-native-linear-gradient/android"
+    }
+}
+ext.addRepos = this.&addRepos
